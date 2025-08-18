@@ -16,13 +16,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* RTL Support */
-[dir="rtl"] {
-  text-align: right;
-}
-
-[dir="rtl"] .flex {
-  flex-direction: row-reverse;
+/* Profile menu positioning */
+.profile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  z-index: 50;
 }
 
 /* Custom Scrollbar */
