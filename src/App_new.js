@@ -69,7 +69,6 @@ const AdminUsers = () => {
 };
 
 const ServicePlatformAdmin = () => {
-  const { isRTL } = useLocalization();
   const { 
     activeTab, 
     showModal, 
@@ -107,22 +106,20 @@ const ServicePlatformAdmin = () => {
   };
 
   return (
-    <div className={`${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-      <Layout>
-        {renderContent()}
-        
-        {/* Modals */}
-        <AddItemModal 
-          isOpen={showModal} 
-          onClose={() => setShowModal(false)} 
-          type={modalType}
-        />
-        <ProfileSettingsModal 
-          isOpen={showProfileSettings} 
-          onClose={() => setShowProfileSettings(false)} 
-        />
-      </Layout>
-    </div>
+    <Layout>
+      {renderContent()}
+      
+      {/* Modals */}
+      <AddItemModal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)} 
+        type={modalType}
+      />
+      <ProfileSettingsModal 
+        isOpen={showProfileSettings} 
+        onClose={() => setShowProfileSettings(false)} 
+      />
+    </Layout>
   );
 };
 
