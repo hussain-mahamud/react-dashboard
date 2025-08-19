@@ -17,6 +17,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { useStats } from '../../hooks/useStats';
 import { mockBookings, mockServices } from '../../data/mockData';
 import StatCard from '../ui/StatCard';
@@ -25,6 +26,7 @@ import RatingStars from '../ui/RatingStars';
 
 const Dashboard = () => {
   const { t, currentLanguage, isRTL } = useLocalization();
+  const { themeConfig } = useTheme();
   const stats = useStats();
 
   // Calculate growth percentages and trends
@@ -41,7 +43,7 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-xl p-6 text-white">
+      <div className={`bg-gradient-to-r ${themeConfig.gradient} rounded-xl p-6 text-white`}>
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h1 className="text-2xl lg:text-3xl font-bold mb-2">
@@ -56,7 +58,7 @@ const Dashboard = () => {
               <Eye className="w-4 h-4 inline mr-2" />
               {t('viewReports')}
             </button>
-            <button className="bg-white text-blue-600 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <button className="bg-white text-theme-primary hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <ArrowUpRight className="w-4 h-4 inline mr-2" />
               {t('quickActions')}
             </button>
@@ -148,62 +150,62 @@ const Dashboard = () => {
       {/* Activity Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Today's Activity */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
+        <div className="bg-theme-card p-6 rounded-lg shadow-sm border-theme-border border">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">{t('todayActivity')}</h3>
-            <Activity className="w-5 h-5 text-gray-400" />
+            <h3 className="text-lg font-semibold text-theme-text">{t('todayActivity')}</h3>
+            <Activity className="w-5 h-5 text-theme-text-secondary" />
           </div>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">New Bookings</span>
-              <span className="font-semibold text-blue-600">+8</span>
+              <span className="text-sm text-theme-text-secondary">New Bookings</span>
+              <span className="font-semibold text-theme-primary">+8</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Completed Services</span>
+              <span className="text-sm text-theme-text-secondary">Completed Services</span>
               <span className="font-semibold text-green-600">+12</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">New Providers</span>
+              <span className="text-sm text-theme-text-secondary">New Providers</span>
               <span className="font-semibold text-purple-600">+3</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Customer Reviews</span>
+              <span className="text-sm text-theme-text-secondary">Customer Reviews</span>
               <span className="font-semibold text-yellow-600">+15</span>
             </div>
           </div>
         </div>
 
         {/* Quick Stats */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
+        <div className="bg-theme-card p-6 rounded-lg shadow-sm border-theme-border border">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Quick Stats</h3>
-            <TrendingUp className="w-5 h-5 text-gray-400" />
+            <h3 className="text-lg font-semibold text-theme-text">Quick Stats</h3>
+            <TrendingUp className="w-5 h-5 text-theme-text-secondary" />
           </div>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Conversion Rate</span>
+              <span className="text-sm text-theme-text-secondary">Conversion Rate</span>
               <span className="font-semibold text-green-600">12.8%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Avg. Booking Value</span>
-              <span className="font-semibold text-blue-600">42 OMR</span>
+              <span className="text-sm text-theme-text-secondary">Avg. Booking Value</span>
+              <span className="font-semibold text-theme-primary">42 OMR</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Customer Retention</span>
+              <span className="text-sm text-theme-text-secondary">Customer Retention</span>
               <span className="font-semibold text-purple-600">87.5%</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-600">Platform Uptime</span>
+              <span className="text-sm text-theme-text-secondary">Platform Uptime</span>
               <span className="font-semibold text-green-600">99.9%</span>
             </div>
           </div>
         </div>
 
         {/* Alerts & Notifications */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
+        <div className="bg-theme-card p-6 rounded-lg shadow-sm border-theme-border border">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Alerts</h3>
-            <AlertCircle className="w-5 h-5 text-gray-400" />
+            <h3 className="text-lg font-semibold text-theme-text">Alerts</h3>
+            <AlertCircle className="w-5 h-5 text-theme-text-secondary" />
           </div>
           <div className="space-y-3">
             <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -221,29 +223,28 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
         {/* Recent Bookings */}
-        <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border">
-          <h3 className="text-lg font-semibold mb-4">{t('recentBookings')}</h3>
+        <div className="bg-theme-card p-4 md:p-6 rounded-lg shadow-sm border-theme-border border">
+          <h3 className="text-lg font-semibold mb-4 text-theme-text">{t('recentBookings')}</h3>
           <div className="space-y-4">
             {mockBookings.slice(0, 5).map(booking => (
-              <div key={booking.id} className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-gray-100 last:border-b-0 space-y-2 sm:space-y-0">
+              <div key={booking.id} className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b border-theme-border last:border-b-0 space-y-2 sm:space-y-0">
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-                    <p className="font-medium text-sm truncate">{booking.service}</p>
+                    <p className="font-medium text-sm truncate text-theme-text">{booking.service}</p>
                     <StatusBadge status={booking.status} />
                   </div>
-                  <p className="text-xs text-gray-600 mt-1 truncate">
+                  <p className="text-xs text-theme-text-secondary mt-1 truncate">
                     {booking.customer} • {booking.date} at {booking.time}
                   </p>
-                  <div className="flex items-center mt-1 text-xs text-gray-500">
+                  <div className="flex items-center mt-1 text-xs text-theme-text-secondary">
                     <MapPin className="w-3 h-3 mr-1 flex-shrink-0" />
                     <span className="truncate">{booking.location}</span>
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0 ml-4">
-                  <p className="font-semibold text-sm">{booking.amount} OMR</p>
+                  <p className="font-semibold text-sm text-theme-text">{booking.amount} OMR</p>
                   {booking.rating && <RatingStars rating={booking.rating} />}
                 </div>
               </div>
@@ -252,8 +253,8 @@ const Dashboard = () => {
         </div>
         
         {/* Top Services */}
-        <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border">
-          <h3 className="text-lg font-semibold mb-4">{t('topServices')}</h3>
+        <div className="bg-theme-card p-4 md:p-6 rounded-lg shadow-sm border-theme-border border">
+          <h3 className="text-lg font-semibold mb-4 text-theme-text">{t('topServices')}</h3>
           <div className="space-y-4">
             {mockServices
               .sort((a, b) => b.bookings - a.bookings)
@@ -262,22 +263,22 @@ const Dashboard = () => {
                 <div key={service.id} className="flex items-center justify-between py-2">
                   <div className="flex items-center min-w-0 flex-1">
                     <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mr-3">
-                      <Grid3X3 className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
+                      <Grid3X3 className="w-4 h-4 md:w-5 md:h-5 text-theme-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-medium text-sm truncate">
+                      <p className="font-medium text-sm truncate text-theme-text">
                         {currentLanguage === 'ar' && service.nameAr ? service.nameAr : service.name}
                       </p>
                       <div className="flex items-center mt-1 flex-wrap">
                         <RatingStars rating={service.rating} />
-                        <span className="text-xs text-gray-500 ml-2">
+                        <span className="text-xs text-theme-text-secondary ml-2">
                           {service.bookings} {t('bookings')}
                         </span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="font-semibold text-sm">{service.price} OMR</p>
+                    <p className="font-semibold text-sm text-theme-text">{service.price} OMR</p>
                     <StatusBadge status={service.status} />
                   </div>
                 </div>

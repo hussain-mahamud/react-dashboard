@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { MENU_ITEMS } from '../../constants';
 
@@ -16,6 +17,19 @@ const Sidebar = () => {
     expandedMenus,
     toggleMenu
   } = useAppContext();
+
+  const [hoveredItem, setHoveredItem] = React.useState(null);
+  const [tooltipPosition, setTooltipPosition] = React.useState({ top: 0, left: 0 });
+  const timeoutRef = React.useRef(null);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleMenuClick = (item) => {
     if (item.children) {
@@ -33,14 +47,41 @@ const Sidebar = () => {
     const isExpanded = expandedMenus[item.id];
     const isActive = activeTab === (item.path || item.id);
 
+    const handleMouseEnter = (event) => {
+      if (sidebarCollapsed && hasChildren) {
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        
+        const rect = event.currentTarget.getBoundingClientRect();
+        setTooltipPosition({
+          top: rect.top,
+          left: isRTL ? rect.left - 200 : rect.right + 2
+        });
+        setHoveredItem(item.id);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (sidebarCollapsed && hasChildren) {
+        // Set a timeout to hide the tooltip
+        timeoutRef.current = setTimeout(() => {
+          setHoveredItem(null);
+        }, 200);
+      }
+    };
+
     return (
-      <div key={item.id}>
+      <div key={item.id} className="relative">
         <button
           onClick={() => handleMenuClick(item)}
-          className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-gray-100 transition-colors ${
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
             isActive 
-              ? 'bg-blue-50 text-blue-600' 
-              : 'text-gray-700'
+              ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
+              : 'text-theme-text-secondary hover:text-theme-text'
           } ${sidebarCollapsed ? 'justify-center' : ''} ${isChild ? 'pl-8' : ''}`}
           title={sidebarCollapsed ? t(item.labelKey) : ''}
         >
@@ -63,7 +104,7 @@ const Sidebar = () => {
         
         {/* Render children if expanded and not collapsed */}
         {hasChildren && isExpanded && !sidebarCollapsed && (
-          <div className="bg-gray-50">
+          <div className="bg-theme-bg">
             {item.children.map(child => renderMenuItem(child, true))}
           </div>
         )}
@@ -74,16 +115,16 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className={`hidden lg:flex flex-col bg-white shadow-lg transition-all duration-300 ${
+      <div className={`hidden lg:flex flex-col bg-theme-sidebar border-theme-border shadow-lg transition-all duration-300 ${
         sidebarCollapsed ? 'w-16' : 'w-64'
       }`}>
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b border-theme-border">
           {!sidebarCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800">{t('appName')}</h1>
+            <h1 className="text-xl font-bold text-theme-text">{t('appName')}</h1>
           )}
           <button 
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="p-2 rounded-md hover:bg-gray-100"
+            className="p-2 rounded-md hover:bg-theme-hover text-theme-text transition-colors"
           >
             {sidebarCollapsed ? 
               (isRTL ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />) : 
@@ -98,12 +139,12 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile Sidebar */}
-      <div className={`${sidebarOpen ? 'block' : 'hidden'} lg:hidden fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-50 w-64 bg-white shadow-lg`}>
-        <div className="flex items-center justify-between p-4 border-b">
-          <h1 className="text-xl font-bold text-gray-800">{t('appName')}</h1>
+                  <div className={`${sidebarOpen ? 'block' : 'hidden'} lg:hidden fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-50 w-64 bg-theme-sidebar border-theme-border shadow-lg transition-colors duration-200`}>
+        <div className="flex items-center justify-between p-4 border-b border-theme-border">
+          <h1 className="text-xl font-bold text-theme-text">{t('appName')}</h1>
           <button 
             onClick={() => setSidebarOpen(false)}
-            className="p-2 rounded-md hover:bg-gray-100"
+            className="p-2 rounded-md hover:bg-theme-hover text-theme-text transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -121,10 +162,10 @@ const Sidebar = () => {
                     setSidebarOpen(false);
                   }
                 }}
-                className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-gray-100 transition-colors ${
+                className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
                   activeTab === (item.path || item.id)
-                    ? 'bg-blue-50 text-blue-600' 
-                    : 'text-gray-700'
+                    ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
+                    : 'text-theme-text-secondary hover:text-theme-text'
                 }`}
               >
                 <item.icon className={`w-5 h-5 ${isRTL ? 'ml-3' : 'mr-3'}`} />
@@ -142,7 +183,7 @@ const Sidebar = () => {
               
               {/* Mobile children */}
               {item.children && expandedMenus[item.id] && (
-                <div className="bg-gray-50">
+                <div className="bg-theme-bg">
                   {item.children.map(child => (
                     <button
                       key={child.id}
@@ -150,10 +191,10 @@ const Sidebar = () => {
                         setActiveTab(child.path || child.id);
                         setSidebarOpen(false);
                       }}
-                      className={`w-full flex items-center px-8 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-gray-100 transition-colors ${
+                      className={`w-full flex items-center px-8 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
                         activeTab === (child.path || child.id)
-                          ? 'bg-blue-50 text-blue-600' 
-                          : 'text-gray-700'
+                          ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
+                          : 'text-theme-text-secondary hover:text-theme-text'
                       }`}
                     >
                       <child.icon className={`w-4 h-4 ${isRTL ? 'ml-3' : 'mr-3'}`} />
@@ -173,6 +214,61 @@ const Sidebar = () => {
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
+      )}
+
+      {/* Collapsed sidebar tooltip */}
+      {sidebarCollapsed && hoveredItem && (
+        <div 
+          className="fixed bg-white border border-gray-200 rounded-lg shadow-xl py-1 min-w-48 z-[1000]"
+          style={{
+            top: tooltipPosition.top,
+            left: tooltipPosition.left,
+            transform: 'translateY(-5px)'
+          }}
+          onMouseEnter={() => {
+            // Clear timeout when entering tooltip
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+          }}
+          onMouseLeave={() => {
+            // Hide tooltip immediately when leaving
+            setHoveredItem(null);
+          }}
+        >
+          {(() => {
+            const item = MENU_ITEMS.find(menuItem => menuItem.id === hoveredItem);
+            if (!item || !item.children) return null;
+            
+            return (
+              <>
+                <div className="px-3 py-2 border-b border-gray-100 bg-gray-50">
+                  <span className="font-medium text-gray-900 text-sm">{t(item.labelKey)}</span>
+                </div>
+                {item.children.map(child => (
+                  <button
+                    key={child.id}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Clicking child:', child.path || child.id);
+                      setActiveTab(child.path || child.id);
+                      setHoveredItem(null);
+                    }}
+                    className={`w-full flex items-center px-3 py-2 text-left hover:bg-blue-50 transition-colors text-sm cursor-pointer ${
+                      activeTab === (child.path || child.id)
+                        ? 'bg-blue-50 text-blue-600 font-medium' 
+                        : 'text-gray-700 hover:text-blue-600'
+                    }`}
+                  >
+                    <child.icon className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                    <span>{t(child.labelKey)}</span>
+                  </button>
+                ))}
+              </>
+            );
+          })()}
+        </div>
       )}
     </>
   );

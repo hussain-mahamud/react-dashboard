@@ -1,26 +1,28 @@
 import React from 'react';
 import { STAT_CARD_COLORS } from '../../constants';
 import { useLocalization } from '../../contexts/LocalizationContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const StatCard = ({ title, value, change, icon: Icon, color = 'blue', trend, subtitle, prefix }) => {
   const { isRTL } = useLocalization();
+  const { themeConfig } = useTheme();
   const colorClass = STAT_CARD_COLORS[color];
   
   const isPositive = trend === 'up' || (change && change > 0);
   const isNegative = trend === 'down' || (change && change < 0);
   
   return (
-    <div className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-md transition-all duration-200 group">
+    <div className="bg-theme-card p-6 rounded-xl shadow-sm border-theme-border border hover:shadow-md transition-all duration-200 group">
       <div className="flex items-center justify-between">
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-600 truncate mb-1">{title}</p>
+          <p className="text-sm font-medium text-theme-text-secondary truncate mb-1">{title}</p>
           <div className="flex items-baseline">
-            {prefix && <span className="text-lg font-semibold text-gray-500 mr-1">{prefix}</span>}
-            <p className="text-2xl lg:text-3xl font-bold text-gray-900">{value}</p>
+            {prefix && <span className="text-lg font-semibold text-theme-text-secondary mr-1">{prefix}</span>}
+            <p className="text-2xl lg:text-3xl font-bold text-theme-text">{value}</p>
           </div>
           {subtitle && (
-            <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
+            <p className="text-xs text-theme-text-secondary mt-1">{subtitle}</p>
           )}
           {change && (
             <div className="flex items-center mt-2">

@@ -154,7 +154,7 @@ const ServicePlatformAdmin = () => {
   };
 
   return (
-    <div className={`${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className={`${isRTL ? 'rtl' : 'ltr'} min-h-screen`} dir={isRTL ? 'rtl' : 'ltr'} style={{ backgroundColor: 'var(--theme-bg)' }}>
       <Layout>
         {renderContent()}
         
