@@ -13,7 +13,7 @@ const ProfileSettingsModal = ({ isOpen, onClose }) => {
           <input 
             type="text" 
             defaultValue="Rabius Sani" 
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg form-input-theme"
           />
         </div>
         <div>
@@ -63,7 +63,7 @@ const ProfileSettingsModal = ({ isOpen, onClose }) => {
           </button>
           <button 
             type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 btn-theme-primary rounded-lg"
           >
             {t('updateProfile')}
           </button>

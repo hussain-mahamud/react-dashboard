@@ -46,6 +46,12 @@ const Sidebar = () => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedMenus[item.id];
     const isActive = activeTab === (item.path || item.id);
+    
+    // Check if any child is active to highlight parent
+    const isChildActive = hasChildren && item.children.some(child => 
+      activeTab === (child.path || child.id)
+    );
+    const shouldHighlight = isActive || isChildActive;
 
     const handleMouseEnter = (event) => {
       if (sidebarCollapsed && hasChildren) {
@@ -78,8 +84,8 @@ const Sidebar = () => {
           onClick={() => handleMenuClick(item)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
-            isActive 
+          className={`sidebar-menu-item w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
+            shouldHighlight 
               ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
               : 'text-theme-text-secondary hover:text-theme-text'
           } ${sidebarCollapsed ? 'justify-center' : ''} ${isChild ? 'pl-8' : ''}`}
@@ -162,8 +168,8 @@ const Sidebar = () => {
                     setSidebarOpen(false);
                   }
                 }}
-                className={`w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
-                  activeTab === (item.path || item.id)
+                className={`sidebar-menu-item w-full flex items-center px-4 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
+                  (activeTab === (item.path || item.id) || (item.children && item.children.some(child => activeTab === (child.path || child.id))))
                     ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
                     : 'text-theme-text-secondary hover:text-theme-text'
                 }`}
@@ -189,9 +195,11 @@ const Sidebar = () => {
                       key={child.id}
                       onClick={() => {
                         setActiveTab(child.path || child.id);
-                        setSidebarOpen(false);
+                        // Keep the parent menu expanded to show it's active
+                        // Don't close the sidebar immediately to show the selection
+                        setTimeout(() => setSidebarOpen(false), 100);
                       }}
-                      className={`w-full flex items-center px-8 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
+                      className={`sidebar-menu-item w-full flex items-center px-8 py-3 ${isRTL ? 'text-right' : 'text-left'} hover:bg-theme-hover transition-colors ${
                         activeTab === (child.path || child.id)
                           ? `sidebar-item-active ${isRTL ? 'rtl' : ''}` 
                           : 'text-theme-text-secondary hover:text-theme-text'
@@ -253,12 +261,14 @@ const Sidebar = () => {
                       e.stopPropagation();
                       console.log('Clicking child:', child.path || child.id);
                       setActiveTab(child.path || child.id);
+                      // Also expand the parent menu to show it's active
+                      toggleMenu(item.id);
                       setHoveredItem(null);
                     }}
-                    className={`w-full flex items-center px-3 py-2 text-left hover:bg-blue-50 transition-colors text-sm cursor-pointer ${
+                    className={`w-full flex items-center px-3 py-2 text-left hover:bg-theme-hover transition-colors text-sm cursor-pointer ${
                       activeTab === (child.path || child.id)
-                        ? 'bg-blue-50 text-blue-600 font-medium' 
-                        : 'text-gray-700 hover:text-blue-600'
+                        ? 'bg-theme-primary-light text-theme-primary font-medium' 
+                        : 'text-gray-700 hover:text-theme-primary'
                     }`}
                   >
                     <child.icon className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />

@@ -56,16 +56,7 @@ const Localization = () => {
               ))}
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Default Currency
-            </label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="OMR">Omani Rial (OMR)</option>
-              <option value="USD">US Dollar (USD)</option>
-              <option value="EUR">Euro (EUR)</option>
-            </select>
-          </div>
+          
         </div>
       </div>
 
@@ -108,57 +99,6 @@ const Localization = () => {
         </div>
       </div>
 
-      {/* Regional Settings */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-lg font-semibold mb-4">Regional Settings</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Date Format
-            </label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="MM/DD/YYYY">MM/DD/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Time Format
-            </label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="12">12 Hour</option>
-              <option value="24">24 Hour</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Number Format
-            </label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="1,234.56">1,234.56</option>
-              <option value="1.234,56">1.234,56</option>
-              <option value="1 234.56">1 234.56</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Week Start
-            </label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option value="monday">Monday</option>
-              <option value="sunday">Sunday</option>
-              <option value="saturday">Saturday</option>
-            </select>
-          </div>
-        </div>
-        
-        <div className="mt-6">
-          <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-            Save Settings
-          </button>
-        </div>
-      </div>
     </div>
   );
 };

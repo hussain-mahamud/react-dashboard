@@ -169,9 +169,15 @@ body {
 /* Focus styles */
 button:focus,
 input:focus,
-select:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Remove focus outline for all interactive elements */
+button:focus,
+.sidebar-menu-item:focus {
+  outline: none;
 }
 
 /* Print styles */

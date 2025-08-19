@@ -49,6 +49,10 @@
   background-color: var(--theme-header);
 }
 
+.bg-theme-primary-light {
+  background-color: rgba(var(--theme-primary-rgb), 0.1);
+}
+
 .bg-theme-bg {
   background-color: var(--theme-bg);
 }
@@ -172,6 +176,24 @@
 .btn-theme-secondary:hover {
   background-color: var(--theme-primary);
   color: white;
+}
+
+/* Input focus styles with theme colors */
+.input-theme-focus:focus {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 3px rgba(var(--theme-primary-rgb), 0.1);
+}
+
+/* Theme-aware form elements */
+.form-input-theme {
+  border-color: var(--theme-border);
+  transition: all 0.2s ease;
+}
+
+.form-input-theme:focus {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 3px rgba(var(--theme-primary-rgb), 0.1);
+  outline: none;
 }
 
 /* Menu active states */

@@ -73,7 +73,7 @@ const DataTable = ({
                 placeholder={`${t('search')}...`}
                 value={searchTerm}
                 onChange={(e) => setSearchTerms({...searchTerms, [activeTab]: e.target.value})}
-                className={`w-full sm:w-48 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${isRTL ? 'pr-10 pl-4' : 'pl-10 pr-4'}`}
+                className={`w-full sm:w-48 py-2 border border-gray-300 rounded-lg form-input-theme ${isRTL ? 'pr-10 pl-4' : 'pl-10 pr-4'}`}
               />
             </div>
             <button className={`flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 whitespace-nowrap`}>
@@ -83,7 +83,7 @@ const DataTable = ({
             {onAdd && (
               <button 
                 onClick={onAdd}
-                className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 whitespace-nowrap"
+                className="flex items-center justify-center px-4 py-2 btn-theme-primary rounded-lg whitespace-nowrap"
               >
                 <Plus className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {t('add')} {title.split(' ')[0]}

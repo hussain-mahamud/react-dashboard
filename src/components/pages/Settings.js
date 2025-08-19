@@ -53,7 +53,7 @@ const Settings = () => {
                       className={`
                         p-4 rounded-lg border cursor-pointer transition-all duration-200
                         ${isSelected 
-                          ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200' 
+                          ? 'border-theme-primary bg-theme-primary-light ring-2 ring-theme-primary ring-opacity-20' 
                           : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                         }
                       `}
@@ -65,7 +65,7 @@ const Settings = () => {
                             <span className="font-medium text-gray-900 text-sm">{theme.label}</span>
                             {isSelected && (
                               <div className="mt-1">
-                                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
+                                <span className="text-xs bg-theme-primary-light text-theme-primary px-2 py-1 rounded">
                                   Current
                                 </span>
                               </div>
@@ -170,10 +170,60 @@ const Settings = () => {
           </div>
         </div>
       </div>
+      <div className="bg-white rounded-lg shadow-sm border p-6">
+        <h2 className="text-lg font-semibold mb-4">Regional Settings</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Date Format
+            </label>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+              <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Time Format
+            </label>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+              <option value="12">12 Hour</option>
+              <option value="24">24 Hour</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Number Format
+            </label>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+              <option value="1,234.56">1,234.56</option>
+              <option value="1.234,56">1.234,56</option>
+              <option value="1 234.56">1 234.56</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Week Start
+            </label>
+            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+              <option value="monday">Monday</option>
+              <option value="sunday">Sunday</option>
+              <option value="saturday">Saturday</option>
+            </select>
+          </div>
+        </div>
+        
+        <div className="mt-6">
+          <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            Save Settings
+          </button>
+        </div>
+      </div>
 
       {/* Save Button */}
       <div className="flex justify-end">
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+        <button className="px-6 py-2 btn-theme-primary rounded-lg transition-colors">
           {t('saveSettings')}
         </button>
       </div>

@@ -26,16 +26,16 @@ const AddItemModal = ({ isOpen, onClose, type }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">{t('firstName')}</label>
-                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg form-input-theme" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">{t('lastName')}</label>
-                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg form-input-theme" />
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">{t('email')}</label>
-              <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+              <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg form-input-theme" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">{t('phone')}</label>
@@ -151,7 +151,7 @@ const AddItemModal = ({ isOpen, onClose, type }) => {
         </button>
         <button 
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="px-4 py-2 btn-theme-primary rounded-lg"
         >
           {t('save')}
         </button>
