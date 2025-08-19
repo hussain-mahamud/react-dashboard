@@ -42,11 +42,72 @@ export const getFieldValue = (item, columnName, t) => {
     'Date': 'date',
     'Time': 'time',
     'Location': 'location',
-    'Amount': 'amount'
+    'Amount': 'amount',
+    
+    // Revenue Reports fields
+    'Month': 'month',
+    'Revenue': 'revenue',
+    'Commissions': 'commissions',
+    'Growth': 'growth',
+    'Orders': 'orders',
+    
+    // Service Analytics fields
+    'Category': 'category',
+    'Requests': 'requests',
+    'Completed': 'completed',
+    'Success Rate': 'successRate',
+    'Avg Rating': 'avgRating',
+    
+    // User Analytics fields
+    'Metric': 'metric',
+    'Value': 'value',
+    'Change': 'change',
+    'Trend': 'trend',
+    
+    // Payments & Invoices fields
+    'Invoice ID': 'invoiceId',
+    'Customer': 'customer',
+    'Total': 'total',
+    'Payment Method': 'paymentMethod',
+    'Transaction ID': 'transactionId',
+    'Type': 'type',
+    
+    // Commission fields
+    'Provider': 'provider',
+    'Commission': 'commission',
+    'Rate': 'rate',
+    'Period': 'period',
+    
+    // Notification fields
+    'Title': 'title',
+    'Message': 'message',
+    'Sent Date': 'sentDate',
+    'Recipients': 'recipients',
+    
+    // Banner fields
+    'Image': 'image',
+    'Active': 'active',
+    'Start Date': 'startDate',
+    'End Date': 'endDate'
   };
 
   const fieldKey = fieldMappings[columnName];
-  return fieldKey ? item[fieldKey] : null;
+  if (fieldKey && item[fieldKey] !== undefined) {
+    return item[fieldKey];
+  }
+  
+  // Fallback: try to match field directly if no mapping found
+  const directKey = columnName.toLowerCase().replace(/\s+/g, '');
+  if (item[directKey] !== undefined) {
+    return item[directKey];
+  }
+  
+  // Last resort: try exact column name match
+  if (item[columnName] !== undefined) {
+    return item[columnName];
+  }
+  
+  return null;
 };
 
 // Format currency

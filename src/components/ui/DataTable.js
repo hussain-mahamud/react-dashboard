@@ -32,23 +32,31 @@ const DataTable = ({
       return <StatusBadge status={value} />;
     }
     
-    if (fieldKey.includes('price') || fieldKey.includes('amount') || column === t('price') || column === 'Amount') {
-      return <span className="font-medium">{value} OMR</span>;
+    if (fieldKey.includes('price') || fieldKey.includes('amount') || column === t('price') || column === 'Amount' || column === 'Revenue' || column === 'Commissions' || column === 'Total' || column === 'Commission') {
+      return value !== null && value !== undefined ? <span className="font-medium">{value} OMR</span> : '-';
     }
     
     if (fieldKey.includes('rating') || column === t('rating')) {
       return value && <RatingStars rating={value} />;
     }
     
+    if (column === 'Growth' || column === 'Success Rate' || column === 'Rate' || column === 'Change') {
+      return value !== null && value !== undefined ? <span className="text-sm">{value}%</span> : '-';
+    }
+    
+    if (column === 'Orders' || column === 'Requests' || column === 'Completed' || column === 'Recipients' || column === 'Value') {
+      return value !== null && value !== undefined ? <span className="text-sm font-medium">{value.toLocaleString()}</span> : '-';
+    }
+    
     if (column === t('name') || column === t('serviceName')) {
       return (
         <span className="text-sm text-gray-900">
-          {currentLanguage === 'ar' && item.nameAr ? item.nameAr : (value || '-')}
+          {currentLanguage === 'ar' && item.nameAr ? item.nameAr : (value !== null && value !== undefined ? value : '-')}
         </span>
       );
     }
     
-    return <span className="text-sm text-gray-900">{value || '-'}</span>;
+    return <span className="text-sm text-gray-900">{value !== null && value !== undefined ? value : '-'}</span>;
   };
 
   return (

@@ -19,6 +19,14 @@ export const AppProvider = ({ children }) => {
   const [modalType, setModalType] = useState('');
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileSettings, setShowProfileSettings] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState({});
+
+  const toggleMenu = (menuId) => {
+    setExpandedMenus(prev => ({
+      ...prev,
+      [menuId]: !prev[menuId]
+    }));
+  };
 
   const value = {
     activeTab,
@@ -36,7 +44,10 @@ export const AppProvider = ({ children }) => {
     showProfileMenu,
     setShowProfileMenu,
     showProfileSettings,
-    setShowProfileSettings
+    setShowProfileSettings,
+    expandedMenus,
+    setExpandedMenus,
+    toggleMenu
   };
 
   return (

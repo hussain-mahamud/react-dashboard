@@ -23,10 +23,24 @@ const Header = () => {
 
   const getPageTitle = () => {
     if (activeTab === 'dashboard') return t('dashboardOverview');
-    if (activeTab === 'admin-users') return t('adminUsers');
     
-    const menuItem = MENU_ITEMS.find(item => item.id === activeTab);
-    return menuItem ? t(menuItem.labelKey) : activeTab;
+    // Find the menu item or child item that matches the active tab
+    for (const menuItem of MENU_ITEMS) {
+      if (menuItem.path === activeTab || menuItem.id === activeTab) {
+        return t(menuItem.labelKey);
+      }
+      
+      if (menuItem.children) {
+        for (const child of menuItem.children) {
+          if (child.path === activeTab || child.id === activeTab) {
+            return t(child.labelKey);
+          }
+        }
+      }
+    }
+    
+    // Fallback to the activeTab value
+    return activeTab;
   };
 
   return (

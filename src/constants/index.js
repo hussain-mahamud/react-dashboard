@@ -7,20 +7,105 @@ import {
   Grid3X3,
   Calendar,
   UserCheck,
-  Package
+  Package,
+  ChevronDown,
+  ChevronRight,
+  User,
+  UserPlus,
+  Building,
+  Star,
+  CreditCard,
+  MapPin,
+  Briefcase,
+  TrendingUp,
+  PieChart,
+  FileBarChart,
+  Globe,
+  Lock,
+  Bell,
+  Palette,
+  Clock,
+  CheckCircle
 } from 'lucide-react';
 
 export const MENU_ITEMS = [
-  { id: 'dashboard', labelKey: 'dashboard', icon: BarChart3 },
-  { id: 'users', labelKey: 'userManagement', icon: Users },
-  { id: 'providers', labelKey: 'serviceProviders', icon: UserCheck },
-  { id: 'services', labelKey: 'serviceManagement', icon: Grid3X3 },
-  { id: 'categories', labelKey: 'categories', icon: Package },
-  { id: 'bookings', labelKey: 'bookingManagement', icon: Calendar },
-  { id: 'content', labelKey: 'contentManagement', icon: FileText },
-  { id: 'reports', labelKey: 'reportsAnalytics', icon: BarChart3 },
-  { id: 'admin-users', labelKey: 'adminUsers', icon: Shield },
-  { id: 'settings', labelKey: 'settings', icon: Settings },
+  { 
+    id: 'dashboard', 
+    labelKey: 'dashboard', 
+    icon: BarChart3,
+    path: 'dashboard'
+  },
+  { 
+    id: 'user-management', 
+    labelKey: 'userManagement', 
+    icon: Users,
+    children: [
+      { id: 'users', labelKey: 'customers', icon: User, path: 'users' },
+      { id: 'providers', labelKey: 'serviceProviders', icon: UserCheck, path: 'providers' },
+      { id: 'admin-users', labelKey: 'adminUsers', icon: Shield, path: 'admin-users' }
+    ]
+  },
+  { 
+    id: 'services', 
+    labelKey: 'serviceManagement', 
+    icon: Grid3X3,
+    children: [
+      { id: 'service-list', labelKey: 'allServices', icon: Briefcase, path: 'services' },
+      { id: 'categories', labelKey: 'categories', icon: Package, path: 'categories' },
+      { id: 'service-requests', labelKey: 'serviceRequests', icon: FileText, path: 'service-requests' }
+    ]
+  },
+  { 
+    id: 'bookings', 
+    labelKey: 'bookingManagement', 
+    icon: Calendar,
+    children: [
+      { id: 'all-bookings', labelKey: 'allBookings', icon: Calendar, path: 'bookings' },
+      { id: 'pending-bookings', labelKey: 'pendingBookings', icon: Clock, path: 'pending-bookings' },
+      { id: 'completed-bookings', labelKey: 'completedBookings', icon: CheckCircle, path: 'completed-bookings' }
+    ]
+  },
+  { 
+    id: 'financial', 
+    labelKey: 'financial', 
+    icon: CreditCard,
+    children: [
+      { id: 'payments', labelKey: 'payments', icon: CreditCard, path: 'payments' },
+      { id: 'invoices', labelKey: 'invoices', icon: FileText, path: 'invoices' },
+      { id: 'commissions', labelKey: 'commissions', icon: TrendingUp, path: 'commissions' }
+    ]
+  },
+  { 
+    id: 'reports', 
+    labelKey: 'reportsAnalytics', 
+    icon: BarChart3,
+    children: [
+      { id: 'dashboard-reports', labelKey: 'dashboardReports', icon: PieChart, path: 'reports' },
+      { id: 'user-analytics', labelKey: 'userAnalytics', icon: Users, path: 'user-analytics' },
+      { id: 'revenue-reports', labelKey: 'revenueReports', icon: TrendingUp, path: 'revenue-reports' },
+      { id: 'service-analytics', labelKey: 'serviceAnalytics', icon: FileBarChart, path: 'service-analytics' }
+    ]
+  },
+  { 
+    id: 'content', 
+    labelKey: 'contentManagement', 
+    icon: FileText,
+    children: [
+      { id: 'pages', labelKey: 'pages', icon: FileText, path: 'content' },
+      { id: 'banners', labelKey: 'banners', icon: Palette, path: 'banners' },
+      { id: 'notifications', labelKey: 'notifications', icon: Bell, path: 'notifications' }
+    ]
+  },
+  { 
+    id: 'system', 
+    labelKey: 'systemSettings', 
+    icon: Settings,
+    children: [
+      { id: 'general-settings', labelKey: 'generalSettings', icon: Settings, path: 'settings' },
+      { id: 'localization', labelKey: 'localization', icon: Globe, path: 'localization' },
+      { id: 'security', labelKey: 'security', icon: Lock, path: 'security' }
+    ]
+  }
 ];
 
 export const STATUS_TYPES = {

@@ -2,14 +2,29 @@ import React from 'react';
 import { LocalizationProvider } from './contexts/LocalizationContext';
 import { AppProvider, useAppContext } from './contexts/AppContext';
 import Layout from './components/layout/Layout';
-import Dashboard from './components/pages/Dashboard';
-import UserManagement from './components/pages/UserManagement';
-import ServiceProviders from './components/pages/ServiceProviders';
-import ServiceManagement from './components/pages/ServiceManagement';
-import Categories from './components/pages/Categories';
-import BookingManagement from './components/pages/BookingManagement';
-import Reports from './components/pages/Reports';
-import Settings from './components/pages/Settings';
+import { 
+  Dashboard, 
+  UserManagement, 
+  ServiceProviders, 
+  ServiceManagement, 
+  Categories, 
+  BookingManagement, 
+  Reports, 
+  Settings,
+  ServiceRequests,
+  PendingBookings,
+  CompletedBookings,
+  Payments,
+  Invoices,
+  Commissions,
+  UserAnalytics,
+  RevenueReports,
+  ServiceAnalytics,
+  Banners,
+  NotificationsPage,
+  Localization,
+  Security
+} from './components/pages';
 import AddItemModal from './components/ui/AddItemModal';
 import ProfileSettingsModal from './components/ui/ProfileSettingsModal';
 import DataTable from './components/ui/DataTable';
@@ -88,19 +103,50 @@ const ServicePlatformAdmin = () => {
       case 'providers':
         return <ServiceProviders />;
       case 'services':
+      case 'service-list':
         return <ServiceManagement />;
       case 'categories':
         return <Categories />;
+      case 'service-requests':
+        return <ServiceRequests />;
       case 'bookings':
+      case 'all-bookings':
         return <BookingManagement />;
+      case 'pending-bookings':
+        return <PendingBookings />;
+      case 'completed-bookings':
+        return <CompletedBookings />;
       case 'content':
+      case 'pages':
         return <ContentManagement />;
       case 'reports':
+      case 'dashboard-reports':
         return <Reports />;
+      case 'user-analytics':
+        return <UserAnalytics />;
+      case 'revenue-reports':
+        return <RevenueReports />;
+      case 'service-analytics':
+        return <ServiceAnalytics />;
       case 'admin-users':
         return <AdminUsers />;
       case 'settings':
+      case 'general-settings':
         return <Settings />;
+      case 'localization':
+        return <Localization />;
+      case 'security':
+        return <Security />;
+      case 'payments':
+        return <Payments />;
+      case 'invoices':
+        return <Invoices />;
+      case 'commissions':
+        return <Commissions />;
+      case 'banners':
+        return <Banners />;
+      case 'notifications':
+        return <NotificationsPage />;
       default:
         return <Dashboard />;
     }
