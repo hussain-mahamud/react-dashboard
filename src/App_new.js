@@ -10,8 +10,13 @@ import Categories from './components/pages/Categories';
 import BookingManagement from './components/pages/BookingManagement';
 import Reports from './components/pages/Reports';
 import Settings from './components/pages/Settings';
+import Localization from './components/pages/Localization';
+import Payments from './components/pages/Payments';
+import NotificationsPage from './components/pages/NotificationsPage';
+import Banners from './components/pages/Banners';
 import AddItemModal from './components/ui/AddItemModal';
 import ProfileSettingsModal from './components/ui/ProfileSettingsModal';
+import DetailViewModal from './components/ui/DetailViewModal';
 import DataTable from './components/ui/DataTable';
 import { useLocalization } from './contexts/LocalizationContext';
 
@@ -75,7 +80,11 @@ const ServicePlatformAdmin = () => {
     setShowModal, 
     modalType, 
     showProfileSettings, 
-    setShowProfileSettings 
+    setShowProfileSettings,
+    showDetailView,
+    setShowDetailView,
+    detailViewItem,
+    detailViewType
   } = useAppContext();
 
   const renderContent = () => {
@@ -100,6 +109,14 @@ const ServicePlatformAdmin = () => {
         return <AdminUsers />;
       case 'settings':
         return <Settings />;
+      case 'localization':
+        return <Localization />;
+      case 'payments':
+        return <Payments />;
+      case 'notifications':
+        return <NotificationsPage />;
+      case 'banners':
+        return <Banners />;
       default:
         return <Dashboard />;
     }
@@ -118,6 +135,12 @@ const ServicePlatformAdmin = () => {
       <ProfileSettingsModal 
         isOpen={showProfileSettings} 
         onClose={() => setShowProfileSettings(false)} 
+      />
+      <DetailViewModal 
+        isOpen={showDetailView} 
+        onClose={() => setShowDetailView(false)} 
+        item={detailViewItem}
+        type={detailViewType}
       />
     </Layout>
   );

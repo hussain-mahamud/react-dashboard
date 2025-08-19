@@ -47,6 +47,7 @@ const CompletedBookings = () => {
         title={`${t('completedBookings')} (${completedBookings.length})`}
         onAdd={handleAddBooking}
         searchFields={['customer', 'service', 'provider', 'location']}
+        itemType="booking"
       />
     </div>
   );

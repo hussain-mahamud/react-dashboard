@@ -94,6 +94,7 @@ const NotificationsPage = () => {
         title={t('notifications')}
         onAdd={handleAddNotification}
         searchFields={['title', 'titleAr', 'type', 'recipient', 'priority']}
+        itemType="notification"
       />
     </div>
   );

@@ -96,6 +96,7 @@ const Payments = () => {
         title={t('payments')}
         onAdd={handleAddPayment}
         searchFields={['customer', 'service', 'provider', 'transactionId', 'paymentMethod']}
+        itemType="payment"
       />
     </div>
   );

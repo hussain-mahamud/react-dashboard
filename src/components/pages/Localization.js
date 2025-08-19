@@ -1,10 +1,16 @@
 import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 import { useAppContext } from '../../contexts/AppContext';
+import DataTable from '../ui/DataTable';
 
 const Localization = () => {
   const { t, currentLanguage, changeLanguage } = useLocalization();
-  const { setShowModal } = useAppContext();
+  const { setModalType, setShowModal } = useAppContext();
+
+  const handleAddTranslation = () => {
+    setModalType('translation');
+    setShowModal(true);
+  };
 
   const languages = [
     { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
@@ -12,14 +18,86 @@ const Localization = () => {
   ];
 
   const translationKeys = [
-    { key: 'dashboard', english: 'Dashboard', arabic: 'لوحة القيادة' },
-    { key: 'userManagement', english: 'User Management', arabic: 'إدارة المستخدمين' },
-    { key: 'serviceManagement', english: 'Service Management', arabic: 'إدارة الخدمات' },
-    { key: 'bookingManagement', english: 'Booking Management', arabic: 'إدارة الحجوزات' },
-    { key: 'financial', english: 'Financial', arabic: 'المالية' },
-    { key: 'reportsAnalytics', english: 'Reports & Analytics', arabic: 'التقارير والتحليلات' },
-    { key: 'contentManagement', english: 'Content Management', arabic: 'إدارة المحتوى' },
-    { key: 'systemSettings', english: 'System Settings', arabic: 'إعدادات النظام' }
+    { 
+      id: 1,
+      key: 'dashboard', 
+      english: 'Dashboard', 
+      arabic: 'لوحة القيادة',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Main dashboard page title'
+    },
+    { 
+      id: 2,
+      key: 'userManagement', 
+      english: 'User Management', 
+      arabic: 'إدارة المستخدمين',
+      category: 'Navigation',
+      status: 'active',
+      description: 'User management section title'
+    },
+    { 
+      id: 3,
+      key: 'serviceManagement', 
+      english: 'Service Management', 
+      arabic: 'إدارة الخدمات',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Service management section title'
+    },
+    { 
+      id: 4,
+      key: 'bookingManagement', 
+      english: 'Booking Management', 
+      arabic: 'إدارة الحجوزات',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Booking management section title'
+    },
+    { 
+      id: 5,
+      key: 'financial', 
+      english: 'Financial', 
+      arabic: 'المالية',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Financial section title'
+    },
+    { 
+      id: 6,
+      key: 'reportsAnalytics', 
+      english: 'Reports & Analytics', 
+      arabic: 'التقارير والتحليلات',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Reports and analytics section title'
+    },
+    { 
+      id: 7,
+      key: 'contentManagement', 
+      english: 'Content Management', 
+      arabic: 'إدارة المحتوى',
+      category: 'Navigation',
+      status: 'active',
+      description: 'Content management section title'
+    },
+    { 
+      id: 8,
+      key: 'systemSettings', 
+      english: 'System Settings', 
+      arabic: 'إعدادات النظام',
+      category: 'Navigation',
+      status: 'active',
+      description: 'System settings section title'
+    }
+  ];
+
+  const translationColumns = [
+    'Key', 
+    'English', 
+    'Arabic', 
+    'Category',
+    t('status')
   ];
 
   return (
@@ -56,49 +134,27 @@ const Localization = () => {
               ))}
             </div>
           </div>
-          
         </div>
       </div>
 
-      {/* Translation Management */}
-      <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">Translation Keys</h2>
-          <button 
-            onClick={() => setShowModal(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Add Translation
-          </button>
-        </div>
-        
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Key</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">English</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Arabic</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {translationKeys.map((item, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-4 py-4 text-sm font-medium text-gray-900">{item.key}</td>
-                  <td className="px-4 py-4 text-sm text-gray-900">{item.english}</td>
-                  <td className="px-4 py-4 text-sm text-gray-900" dir="rtl">{item.arabic}</td>
-                  <td className="px-4 py-4 text-sm">
-                    <button className="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
-                    <button className="text-red-600 hover:text-red-800">Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      {/* Translation Management using DataTable */}
+      <DataTable
+        data={translationKeys}
+        columns={translationColumns}
+        title="Translation Management"
+        onAdd={handleAddTranslation}
+        searchFields={['key', 'english', 'arabic', 'category']}
+        itemType="translation"
+        renderCustomCell={(item, column, value, fieldKey) => {
+          if (column === 'Arabic') {
+            return <span dir="rtl" className="text-sm text-gray-900">{value}</span>;
+          }
+          if (column === 'Key') {
+            return <span className="text-sm font-mono bg-gray-100 px-2 py-1 rounded">{value}</span>;
+          }
+          return undefined; // Use default rendering
+        }}
+      />
     </div>
   );
 };

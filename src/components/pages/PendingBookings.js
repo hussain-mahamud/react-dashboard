@@ -46,6 +46,7 @@ const PendingBookings = () => {
         title={`${t('pendingBookings')} (${pendingBookings.length})`}
         onAdd={handleAddBooking}
         searchFields={['customer', 'service', 'provider', 'location']}
+        itemType="booking"
       />
     </div>
   );

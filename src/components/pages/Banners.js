@@ -95,6 +95,7 @@ const Banners = () => {
         title={t('banners')}
         onAdd={handleAddBanner}
         searchFields={['title', 'titleAr', 'type', 'position']}
+        itemType="banner"
       />
     </div>
   );

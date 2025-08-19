@@ -31,6 +31,7 @@ const ServiceManagement = () => {
       title={t('serviceManagement')}
       onAdd={handleAddService}
       searchFields={['name', 'nameAr', 'category', 'provider']}
+      itemType="service"
     />
   );
 };

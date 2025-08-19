@@ -23,6 +23,7 @@ const BookingManagement = () => {
       columns={bookingColumns}
       title={t('bookingManagement')}
       searchFields={['customer', 'service', 'provider', 'location']}
+      itemType="booking"
     />
   );
 };

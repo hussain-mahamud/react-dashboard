@@ -20,12 +20,28 @@ export const AppProvider = ({ children }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileSettings, setShowProfileSettings] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState({});
+  const [showDetailView, setShowDetailView] = useState(false);
+  const [detailViewItem, setDetailViewItem] = useState(null);
+  const [detailViewType, setDetailViewType] = useState('');
+  const [editItem, setEditItem] = useState(null);
 
   const toggleMenu = (menuId) => {
     setExpandedMenus(prev => ({
       ...prev,
       [menuId]: !prev[menuId]
     }));
+  };
+
+  const openDetailView = (item, type) => {
+    setDetailViewItem(item);
+    setDetailViewType(type);
+    setShowDetailView(true);
+  };
+
+  const closeDetailView = () => {
+    setShowDetailView(false);
+    setDetailViewItem(null);
+    setDetailViewType('');
   };
 
   const value = {
@@ -47,7 +63,17 @@ export const AppProvider = ({ children }) => {
     setShowProfileSettings,
     expandedMenus,
     setExpandedMenus,
-    toggleMenu
+    toggleMenu,
+    showDetailView,
+    setShowDetailView,
+    detailViewItem,
+    setDetailViewItem,
+    detailViewType,
+    setDetailViewType,
+    openDetailView,
+    closeDetailView,
+    editItem,
+    setEditItem
   };
 
   return (

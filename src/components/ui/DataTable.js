@@ -12,11 +12,78 @@ const DataTable = ({
   title, 
   onAdd, 
   searchFields = ['name', 'email', 'title'],
-  renderCustomCell 
+  renderCustomCell,
+  itemType = 'item' // New prop to specify the type of items in the table
 }) => {
   const { t, currentLanguage, isRTL } = useLocalization();
-  const { activeTab, searchTerms, setSearchTerms } = useAppContext();
+  const { activeTab, searchTerms, setSearchTerms, openDetailView, setModalType, setShowModal, setEditItem } = useAppContext();
   
+  const handleViewClick = (item) => {
+    // Determine the type based on activeTab or itemType prop
+    let type = itemType;
+    if (type === 'item') {
+      // Auto-detect type based on activeTab
+      if (activeTab.includes('users') || activeTab === 'customers') {
+        type = 'customer';
+      } else if (activeTab.includes('provider')) {
+        type = 'provider';
+      } else if (activeTab.includes('service')) {
+        type = 'service';
+      } else if (activeTab.includes('booking')) {
+        type = 'booking';
+      } else if (activeTab.includes('payment')) {
+        type = 'payment';
+      } else if (activeTab.includes('notification')) {
+        type = 'notification';
+      } else if (activeTab.includes('banner')) {
+        type = 'banner';
+      } else if (activeTab.includes('translation')) {
+        type = 'translation';
+      } else if (activeTab.includes('category')) {
+        type = 'category';
+      } else {
+        type = 'generic';
+      }
+    }
+        console.log(activeTab, type);
+
+    openDetailView(item, type);
+  };
+
+  const handleEditClick = (item) => {
+    // Determine the type based on activeTab or itemType prop
+    let type = itemType;
+    if (type === 'item') {
+      // Auto-detect type based on activeTab
+      if (activeTab.includes('users') || activeTab === 'customers') {
+        type = 'customer';
+      } else if (activeTab.includes('provider')) {
+        type = 'provider';
+      } else if (activeTab.includes('service')) {
+        type = 'service';
+      } else if (activeTab.includes('booking')) {
+        type = 'booking';
+      } else if (activeTab.includes('payment')) {
+        type = 'payment';
+      } else if (activeTab.includes('notification')) {
+        type = 'notification';
+      } else if (activeTab.includes('banner')) {
+        type = 'banner';
+      } else if (activeTab.includes('translation')) {
+        type = 'translation';
+      } else if (activeTab.includes('category')) {
+        type = 'category';
+      } else {
+        type = 'generic';
+      }
+    }
+    console.log(activeTab, type);
+    // Set the item to edit and open the modal in edit mode
+    setEditItem(item);
+    setModalType(type);
+    setShowModal(true);
+  };
+
   const searchTerm = searchTerms[activeTab] || '';
   const filteredData = filterData(data, searchTerm, searchFields);
 
@@ -123,13 +190,23 @@ const DataTable = ({
                 })}
                 <td className={`px-4 md:px-6 py-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                   <div className={`flex items-center space-x-1 md:space-x-2 ${isRTL ? 'justify-end' : 'justify-start'}`}>
-                    <button className="p-1.5 md:p-2 text-gray-400 hover:text-blue-600 rounded">
+                    <button 
+                      onClick={() => handleViewClick(item)}
+                      className="p-1.5 md:p-2 text-gray-400 hover:text-blue-600 rounded transition-colors"
+                      title={t('view')}
+                    >
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="p-1.5 md:p-2 text-gray-400 hover:text-green-600 rounded">
+                    <button 
+                      onClick={() => handleEditClick(item)}
+                      className="p-1.5 md:p-2 text-gray-400 hover:text-green-600 rounded transition-colors"
+                      title={t('edit')}
+                    >
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button className="p-1.5 md:p-2 text-gray-400 hover:text-red-600 rounded">
+                    <button className="p-1.5 md:p-2 text-gray-400 hover:text-red-600 rounded transition-colors"
+                      title={t('delete')}
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

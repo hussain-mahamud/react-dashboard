@@ -27,6 +27,7 @@ const Categories = () => {
       title={t('categories')}
       onAdd={handleAddCategory}
       searchFields={['name', 'nameAr', 'description']}
+      itemType="category"
     />
   );
 };

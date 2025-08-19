@@ -33,6 +33,7 @@ const UserManagement = () => {
       title={t('customerManagement')}
       onAdd={handleAddUser}
       searchFields={['name', 'email', 'phone']}
+      itemType="customer"
     />
   );
 };

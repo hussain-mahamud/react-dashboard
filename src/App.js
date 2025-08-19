@@ -28,6 +28,7 @@ import {
 } from './components/pages';
 import AddItemModal from './components/ui/AddItemModal';
 import ProfileSettingsModal from './components/ui/ProfileSettingsModal';
+import DetailViewModal from './components/ui/DetailViewModal';
 import DataTable from './components/ui/DataTable';
 import { useLocalization } from './contexts/LocalizationContext';
 
@@ -92,7 +93,11 @@ const ServicePlatformAdmin = () => {
     setShowModal, 
     modalType, 
     showProfileSettings, 
-    setShowProfileSettings 
+    setShowProfileSettings,
+    showDetailView,
+    detailViewItem,
+    detailViewType,
+    closeDetailView
   } = useAppContext();
 
   const renderContent = () => {
@@ -167,6 +172,12 @@ const ServicePlatformAdmin = () => {
         <ProfileSettingsModal 
           isOpen={showProfileSettings} 
           onClose={() => setShowProfileSettings(false)} 
+        />
+        <DetailViewModal 
+          isOpen={showDetailView} 
+          onClose={closeDetailView}
+          item={detailViewItem}
+          type={detailViewType}
         />
       </Layout>
     </div>

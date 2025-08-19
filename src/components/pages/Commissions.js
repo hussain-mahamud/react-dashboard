@@ -96,6 +96,7 @@ const Commissions = () => {
         title={t('commissions')}
         onAdd={handleAddCommission}
         searchFields={['provider', 'service', 'customer', 'paymentMethod']}
+        itemType="commission"
       />
     </div>
   );

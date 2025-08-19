@@ -96,6 +96,7 @@ const Invoices = () => {
         title={t('invoices')}
         onAdd={handleAddInvoice}
         searchFields={['invoiceNumber', 'customer', 'service', 'provider']}
+        itemType="invoice"
       />
     </div>
   );

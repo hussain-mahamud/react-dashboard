@@ -32,6 +32,7 @@ const ServiceProviders = () => {
       title={t('serviceProviderManagement')}
       onAdd={handleAddProvider}
       searchFields={['name', 'email', 'phone']}
+      itemType="provider"
     />
   );
 };

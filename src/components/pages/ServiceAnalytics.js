@@ -96,6 +96,7 @@ const ServiceAnalytics = () => {
         title={t('serviceAnalytics')}
         onAdd={handleAnalyzeService}
         searchFields={['service', 'category', 'topProvider']}
+        itemType="analytics"
       />
     </div>
   );

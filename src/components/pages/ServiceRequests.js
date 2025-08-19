@@ -83,6 +83,7 @@ const ServiceRequests = () => {
       title={t('serviceRequests')}
       onAdd={handleAddRequest}
       searchFields={['customer', 'service', 'provider', 'location', 'description']}
+      itemType="service-request"
     />
   );
 };

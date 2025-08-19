@@ -91,6 +91,7 @@ const RevenueReports = () => {
         title={t('revenueReports')}
         onAdd={handleGenerateReport}
         searchFields={['period', 'topCategory', 'topProvider']}
+        itemType="report"
       />
     </div>
   );

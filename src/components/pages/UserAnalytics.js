@@ -96,6 +96,7 @@ const UserAnalytics = () => {
         title={t('userAnalytics')}
         onAdd={handleExportAnalytics}
         searchFields={['user', 'userType', 'favoriteCategory', 'engagement']}
+        itemType="analytics"
       />
     </div>
   );
