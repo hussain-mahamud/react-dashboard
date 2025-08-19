@@ -37,14 +37,21 @@ export const translations = {
     
     // Dashboard
     dashboardOverview: "Dashboard Overview",
+    welcome: "Welcome to",
+    todayOverview: "Here's what's happening today",
+    viewReports: "View Reports",
+    quickActions: "Quick Actions",
+    todayActivity: "Today's Activity",
     totalBookings: "Total Bookings",
     activeUsers: "Active Users",
     monthlyRevenue: "Monthly Revenue",
     activeServices: "Active Services",
     completedBookings: "Completed Bookings",
     averageRating: "Average Rating",
+    serviceProviders: "Service Providers",
     recentBookings: "Recent Bookings",
     topServices: "Top Services",
+    bookings: "bookings",
     
     // Common Actions
     search: "Search",
@@ -180,14 +187,21 @@ export const translations = {
     
     // Dashboard
     dashboardOverview: "نظرة عامة على لوحة القيادة",
+    welcome: "مرحباً بك في",
+    todayOverview: "إليك ما يحدث اليوم",
+    viewReports: "عرض التقارير",
+    quickActions: "الإجراءات السريعة",
+    todayActivity: "نشاط اليوم",
     totalBookings: "إجمالي الحجوزات",
     activeUsers: "المستخدمون النشطون",
     monthlyRevenue: "الإيرادات الشهرية",
     activeServices: "الخدمات النشطة",
     completedBookings: "الحجوزات المكتملة",
     averageRating: "متوسط التقييم",
+    serviceProviders: "مقدمو الخدمات",
     recentBookings: "الحجوزات الأخيرة",
     topServices: "أفضل الخدمات",
+    bookings: "حجوزات",
     
     // Common Actions
     search: "بحث",

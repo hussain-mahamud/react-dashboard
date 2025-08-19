@@ -1,5 +1,6 @@
 import React from 'react';
 import { LocalizationProvider } from './contexts/LocalizationContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { AppProvider, useAppContext } from './contexts/AppContext';
 import Layout from './components/layout/Layout';
 import { 
@@ -174,11 +175,13 @@ const ServicePlatformAdmin = () => {
 
 const App = () => {
   return (
-    <LocalizationProvider>
-      <AppProvider>
-        <ServicePlatformAdmin />
-      </AppProvider>
-    </LocalizationProvider>
+    <ThemeProvider>
+      <LocalizationProvider>
+        <AppProvider>
+          <ServicePlatformAdmin />
+        </AppProvider>
+      </LocalizationProvider>
+    </ThemeProvider>
   );
 };
 

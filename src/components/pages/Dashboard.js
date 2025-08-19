@@ -1,5 +1,21 @@
 import React from 'react';
-import { Calendar, Users, DollarSign, Grid3X3, UserCheck, CheckCircle, Star, MapPin } from 'lucide-react';
+import { 
+  Calendar, 
+  Users, 
+  DollarSign, 
+  Grid3X3, 
+  UserCheck, 
+  CheckCircle, 
+  Star, 
+  MapPin,
+  TrendingUp,
+  Activity,
+  Clock,
+  ArrowUpRight,
+  AlertCircle,
+  Eye,
+  MessageSquare
+} from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 import { useStats } from '../../hooks/useStats';
 import { mockBookings, mockServices } from '../../data/mockData';
@@ -8,63 +24,202 @@ import StatusBadge from '../ui/StatusBadge';
 import RatingStars from '../ui/RatingStars';
 
 const Dashboard = () => {
-  const { t, currentLanguage } = useLocalization();
+  const { t, currentLanguage, isRTL } = useLocalization();
   const stats = useStats();
 
+  // Calculate growth percentages and trends
+  const growthData = {
+    bookingsGrowth: 12.5,
+    usersGrowth: 8.3,
+    revenueGrowth: 15.2,
+    servicesGrowth: 5.1,
+    providersGrowth: 7.8,
+    completionRate: 94.2,
+    avgResponseTime: '12 min'
+  };
+
   return (
-    <div className="space-y-4 md:space-y-6">
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+    <div className="space-y-6">
+      {/* Welcome Header */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-xl p-6 text-white">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <h1 className="text-2xl lg:text-3xl font-bold mb-2">
+              {t('welcome')} Dashboard
+            </h1>
+            <p className="text-blue-100 text-lg">
+              {t('todayOverview')} • {new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-OM' : 'en-OM')}
+            </p>
+          </div>
+          <div className="mt-4 lg:mt-0 flex space-x-3">
+            <button className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <Eye className="w-4 h-4 inline mr-2" />
+              {t('viewReports')}
+            </button>
+            <button className="bg-white text-blue-600 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+              <ArrowUpRight className="w-4 h-4 inline mr-2" />
+              {t('quickActions')}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Performance Indicators */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           title={t('totalBookings')} 
           value={stats.totalBookings} 
-          change={12} 
+          change={growthData.bookingsGrowth} 
           icon={Calendar} 
-          color="blue" 
+          color="blue"
+          trend="up"
+          subtitle={`${stats.pendingBookings} pending`}
         />
         <StatCard 
           title={t('activeUsers')} 
           value={stats.totalUsers} 
-          change={8} 
+          change={growthData.usersGrowth} 
           icon={Users} 
-          color="green" 
+          color="green"
+          trend="up"
+          subtitle={`${stats.totalCustomers} customers`}
         />
         <StatCard 
           title={t('monthlyRevenue')} 
-          value={`${stats.monthlyRevenue} OMR`} 
-          change={15} 
+          value={`${stats.monthlyRevenue}`} 
+          change={growthData.revenueGrowth} 
           icon={DollarSign} 
-          color="purple" 
+          color="purple"
+          trend="up"
+          subtitle="OMR this month"
+          prefix="OMR"
         />
         <StatCard 
           title={t('activeServices')} 
           value={stats.activeServices} 
-          change={5} 
+          change={growthData.servicesGrowth} 
           icon={Grid3X3} 
-          color="yellow" 
+          color="yellow"
+          trend="up"
+          subtitle={`${stats.totalServices} total services`}
         />
       </div>
 
-      {/* Additional Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {/* Performance Metrics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           title={t('serviceProviders')} 
           value={stats.totalProviders} 
+          change={growthData.providersGrowth}
           icon={UserCheck} 
-          color="blue" 
+          color="indigo"
+          trend="up"
+          subtitle="Active providers"
         />
         <StatCard 
           title={t('completedBookings')} 
           value={stats.completedBookings} 
+          change={growthData.completionRate}
           icon={CheckCircle} 
-          color="green" 
+          color="green"
+          trend="up"
+          subtitle="Success rate 94.2%"
         />
         <StatCard 
           title={t('averageRating')} 
           value={stats.averageRating.toFixed(1)} 
+          change={2.3}
           icon={Star} 
-          color="yellow" 
+          color="yellow"
+          trend="up"
+          subtitle="Customer satisfaction"
         />
+        <StatCard 
+          title="Response Time" 
+          value={growthData.avgResponseTime}
+          change={-15.2}
+          icon={Clock} 
+          color="orange"
+          trend="down"
+          subtitle="Avg response time"
+        />
+      </div>
+
+      {/* Activity Overview */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Today's Activity */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">{t('todayActivity')}</h3>
+            <Activity className="w-5 h-5 text-gray-400" />
+          </div>
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">New Bookings</span>
+              <span className="font-semibold text-blue-600">+8</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Completed Services</span>
+              <span className="font-semibold text-green-600">+12</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">New Providers</span>
+              <span className="font-semibold text-purple-600">+3</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Customer Reviews</span>
+              <span className="font-semibold text-yellow-600">+15</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Quick Stats</h3>
+            <TrendingUp className="w-5 h-5 text-gray-400" />
+          </div>
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Conversion Rate</span>
+              <span className="font-semibold text-green-600">12.8%</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Avg. Booking Value</span>
+              <span className="font-semibold text-blue-600">42 OMR</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Customer Retention</span>
+              <span className="font-semibold text-purple-600">87.5%</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-gray-600">Platform Uptime</span>
+              <span className="font-semibold text-green-600">99.9%</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Alerts & Notifications */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Alerts</h3>
+            <AlertCircle className="w-5 h-5 text-gray-400" />
+          </div>
+          <div className="space-y-3">
+            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm text-yellow-800 font-medium">3 pending reviews</p>
+              <p className="text-xs text-yellow-600">Requires admin attention</p>
+            </div>
+            <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800 font-medium">New provider applications</p>
+              <p className="text-xs text-blue-600">5 pending approvals</p>
+            </div>
+            <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-sm text-green-800 font-medium">System update completed</p>
+              <p className="text-xs text-green-600">All services running normally</p>
+            </div>
+          </div>
+        </div>
       </div>
       
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
