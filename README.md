@@ -1,4 +1,4 @@
-# React Service Platform Admin Dashboard
+# Better Dashboard
 
 A modern, scalable React dashboard application for managing service platforms with proper folder structure and component organization.
 

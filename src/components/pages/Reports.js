@@ -23,7 +23,7 @@ const Reports = () => {
               <Download className="w-4 h-4 mr-2" />
               {t('exportExcel')}
             </button>
-            <button className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button className="flex items-center justify-center px-4 py-2 btn-theme-primary rounded-lg">
               <Download className="w-4 h-4 mr-2" />
               {t('exportCSV')}
             </button>

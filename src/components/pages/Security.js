@@ -154,7 +154,7 @@ const Security = () => {
                   </span>
                   <button
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      setting.enabled ? 'bg-blue-600' : 'bg-gray-300'
+                      setting.enabled ? 'bg-theme-primary' : 'bg-gray-300'
                     }`}
                   >
                     <span
@@ -212,7 +212,7 @@ const Security = () => {
           </div>
         </div>
         <div className="mt-6">
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button className="px-6 py-2 btn-theme-primary rounded-lg">
             Update Policy
           </button>
         </div>

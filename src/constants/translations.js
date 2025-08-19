@@ -2,7 +2,7 @@
 export const translations = {
   en: {
     // Header & Navigation
-    appName: "Service Platform Admin",
+    appName: "Better Dashboard",
     dashboard: "Dashboard",
     userManagement: "User Management",
     customers: "Customers",
@@ -148,7 +148,7 @@ export const translations = {
   },
   ar: {
     // Header & Navigation
-    appName: "إدارة منصة الخدمات",
+    appName: "لوحة تحكم أفضل",
     dashboard: "لوحة القيادة",
     userManagement: "إدارة المستخدمين",
     customers: "العملاء",

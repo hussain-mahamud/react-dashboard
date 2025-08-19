@@ -47,7 +47,7 @@ const LocalizationContext = createContext();
 const translations = {
   en: {
     // Header & Navigation
-    appName: "Service Platform Admin",
+    appName: "Better Dashboard",
     dashboard: "Dashboard",
     userManagement: "User Management",
     serviceProviders: "Service Providers",
@@ -165,7 +165,7 @@ const translations = {
   },
   ar: {
     // Header & Navigation
-    appName: "إدارة منصة الخدمات",
+    appName: "لوحة تحكم أفضل",
     dashboard: "لوحة القيادة",
     userManagement: "إدارة المستخدمين",
     serviceProviders: "مقدمو الخدمات",
