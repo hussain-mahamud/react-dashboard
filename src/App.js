@@ -1,6 +1,5 @@
 import React from 'react';
 import { LocalizationProvider } from './contexts/LocalizationContext';
-import { ThemeProvider } from './contexts/ThemeContext';
 import { AppProvider, useAppContext } from './contexts/AppContext';
 import Layout from './components/layout/Layout';
 import { 
@@ -28,7 +27,6 @@ import {
 } from './components/pages';
 import AddItemModal from './components/ui/AddItemModal';
 import ProfileSettingsModal from './components/ui/ProfileSettingsModal';
-import DetailViewModal from './components/ui/DetailViewModal';
 import DataTable from './components/ui/DataTable';
 import { useLocalization } from './contexts/LocalizationContext';
 
@@ -93,11 +91,7 @@ const ServicePlatformAdmin = () => {
     setShowModal, 
     modalType, 
     showProfileSettings, 
-    setShowProfileSettings,
-    showDetailView,
-    detailViewItem,
-    detailViewType,
-    closeDetailView
+    setShowProfileSettings 
   } = useAppContext();
 
   const renderContent = () => {
@@ -153,13 +147,17 @@ const ServicePlatformAdmin = () => {
         return <Banners />;
       case 'notifications':
         return <NotificationsPage />;
+      case 'notifications':
+        return <div className="p-6"><h2 className="text-2xl font-bold">Notifications</h2><p className="text-gray-600 mt-2">Notification management functionality will be implemented here.</p></div>;
+      case 'service-requests':
+        return <div className="p-6"><h2 className="text-2xl font-bold">Service Requests</h2><p className="text-gray-600 mt-2">Service request management functionality will be implemented here.</p></div>;
       default:
         return <Dashboard />;
     }
   };
 
   return (
-    <div className={`${isRTL ? 'rtl' : 'ltr'} min-h-screen`} dir={isRTL ? 'rtl' : 'ltr'} style={{ backgroundColor: 'var(--theme-bg)' }}>
+    <div className={`${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <Layout>
         {renderContent()}
         
@@ -173,12 +171,6 @@ const ServicePlatformAdmin = () => {
           isOpen={showProfileSettings} 
           onClose={() => setShowProfileSettings(false)} 
         />
-        <DetailViewModal 
-          isOpen={showDetailView} 
-          onClose={closeDetailView}
-          item={detailViewItem}
-          type={detailViewType}
-        />
       </Layout>
     </div>
   );
@@ -186,13 +178,11 @@ const ServicePlatformAdmin = () => {
 
 const App = () => {
   return (
-    <ThemeProvider>
-      <LocalizationProvider>
-        <AppProvider>
-          <ServicePlatformAdmin />
-        </AppProvider>
-      </LocalizationProvider>
-    </ThemeProvider>
+    <LocalizationProvider>
+      <AppProvider>
+        <ServicePlatformAdmin />
+      </AppProvider>
+    </LocalizationProvider>
   );
 };
 
