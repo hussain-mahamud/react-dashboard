@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
-import { useTheme } from '../../contexts/ThemeContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { MENU_ITEMS } from '../../constants';
 
@@ -227,7 +226,7 @@ const Sidebar = () => {
       {/* Collapsed sidebar tooltip */}
       {sidebarCollapsed && hoveredItem && (
         <div 
-          className="fixed bg-white border border-gray-200 rounded-lg shadow-xl py-1 min-w-48 z-[1000]"
+          className="fixed bg-theme-card border border-theme-border rounded-lg shadow-xl py-1 min-w-48 z-[1000]"
           style={{
             top: tooltipPosition.top,
             left: tooltipPosition.left,
@@ -250,8 +249,8 @@ const Sidebar = () => {
             
             return (
               <>
-                <div className="px-3 py-2 border-b border-gray-100 bg-gray-50">
-                  <span className="font-medium text-gray-900 text-sm">{t(item.labelKey)}</span>
+                <div className="px-3 py-2 border-b border-theme-border bg-theme-surface">
+                  <span className="font-medium text-theme-text text-sm">{t(item.labelKey)}</span>
                 </div>
                 {item.children.map(child => (
                   <button

@@ -8,13 +8,11 @@ import {
   LogOut 
 } from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
-import { useTheme } from '../../contexts/ThemeContext';
 import { useAppContext } from '../../contexts/AppContext';
 import { MENU_ITEMS, LANGUAGES } from '../../constants';
 
 const Header = () => {
   const { t, currentLanguage, changeLanguage, isRTL } = useLocalization();
-  const { themeConfig } = useTheme();
   const { 
     activeTab, 
     setSidebarOpen, 
@@ -51,7 +49,7 @@ const Header = () => {
         <div className="flex items-center min-w-0">
           <button
             onClick={() => setSidebarOpen(true)}
-            className={`lg:hidden p-2 rounded-md hover:bg-gray-100 ${isRTL ? 'ml-3' : 'mr-3'}`}
+            className={`lg:hidden p-2 rounded-md hover:bg-theme-surface ${isRTL ? 'ml-3' : 'mr-3'}`}
           >
             <Menu className="w-5 h-5 text-theme-text" />
           </button>
@@ -94,21 +92,21 @@ const Header = () => {
             
             {/* Profile Dropdown */}
             {showProfileMenu && (
-              <div className="profile-menu w-48 bg-white rounded-lg shadow-lg border">
+              <div className="profile-menu w-48 bg-theme-card rounded-lg shadow-lg border border-theme-border">
                 <div className="py-2">
                   <button
                     onClick={() => {
                       setShowProfileSettings(true);
                       setShowProfileMenu(false);
                     }}
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="w-full flex items-center px-4 py-2 text-sm text-theme-text hover:bg-theme-surface"
                   >
                     <Settings className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                     {t('profileSettings')}
                   </button>
                   <button
                     onClick={() => setShowProfileMenu(false)}
-                    className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="w-full flex items-center px-4 py-2 text-sm text-theme-text hover:bg-theme-surface"
                   >
                     <LogOut className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                     {t('logout')}

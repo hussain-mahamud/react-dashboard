@@ -1,6 +1,7 @@
 import React from 'react';
 import { LocalizationProvider } from './contexts/LocalizationContext';
 import { AppProvider, useAppContext } from './contexts/AppContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Layout from './components/layout/Layout';
 import { 
   Dashboard, 
@@ -147,10 +148,6 @@ const ServicePlatformAdmin = () => {
         return <Banners />;
       case 'notifications':
         return <NotificationsPage />;
-      case 'notifications':
-        return <div className="p-6"><h2 className="text-2xl font-bold">Notifications</h2><p className="text-gray-600 mt-2">Notification management functionality will be implemented here.</p></div>;
-      case 'service-requests':
-        return <div className="p-6"><h2 className="text-2xl font-bold">Service Requests</h2><p className="text-gray-600 mt-2">Service request management functionality will be implemented here.</p></div>;
       default:
         return <Dashboard />;
     }
@@ -179,9 +176,11 @@ const ServicePlatformAdmin = () => {
 const App = () => {
   return (
     <LocalizationProvider>
-      <AppProvider>
-        <ServicePlatformAdmin />
-      </AppProvider>
+      <ThemeProvider>
+        <AppProvider>
+          <ServicePlatformAdmin />
+        </AppProvider>
+      </ThemeProvider>
     </LocalizationProvider>
   );
 };

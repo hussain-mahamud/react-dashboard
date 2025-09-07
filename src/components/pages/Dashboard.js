@@ -13,11 +13,9 @@ import {
   Clock,
   ArrowUpRight,
   AlertCircle,
-  Eye,
-  MessageSquare
+  Eye
 } from 'lucide-react';
 import { useLocalization } from '../../contexts/LocalizationContext';
-import { useTheme } from '../../contexts/ThemeContext';
 import { useStats } from '../../hooks/useStats';
 import { mockBookings, mockServices } from '../../data/mockData';
 import StatCard from '../ui/StatCard';
@@ -25,8 +23,7 @@ import StatusBadge from '../ui/StatusBadge';
 import RatingStars from '../ui/RatingStars';
 
 const Dashboard = () => {
-  const { t, currentLanguage, isRTL } = useLocalization();
-  const { themeConfig } = useTheme();
+  const { t, currentLanguage } = useLocalization();
   const stats = useStats();
 
   // Calculate growth percentages and trends
@@ -43,13 +40,13 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       {/* Welcome Header */}
-      <div className={`bg-gradient-to-r ${themeConfig.gradient} rounded-xl p-6 text-white`}>
+      <div className="bg-theme-primary rounded-xl p-6 text-white">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h1 className="text-2xl lg:text-3xl font-bold mb-2">
               {t('welcome')} Dashboard
             </h1>
-            <p className="text-blue-100 text-lg">
+            <p className="text-white/90 text-lg">
               {t('todayOverview')} • {new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-OM' : 'en-OM')}
             </p>
           </div>
@@ -166,7 +163,7 @@ const Dashboard = () => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-theme-text-secondary">New Providers</span>
-              <span className="font-semibold text-purple-600">+3</span>
+              <span className="font-semibold text-theme-accent">+3</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-theme-text-secondary">Customer Reviews</span>
@@ -192,7 +189,7 @@ const Dashboard = () => {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-theme-text-secondary">Customer Retention</span>
-              <span className="font-semibold text-purple-600">87.5%</span>
+              <span className="font-semibold text-theme-accent">87.5%</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-theme-text-secondary">Platform Uptime</span>
@@ -212,9 +209,9 @@ const Dashboard = () => {
               <p className="text-sm text-yellow-800 font-medium">3 pending reviews</p>
               <p className="text-xs text-yellow-600">Requires admin attention</p>
             </div>
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm text-blue-800 font-medium">New provider applications</p>
-              <p className="text-xs text-blue-600">5 pending approvals</p>
+            <div className="p-3 bg-theme-primary-light border border-theme-primary/20 rounded-lg">
+              <p className="text-sm text-theme-primary font-medium">New provider applications</p>
+              <p className="text-xs text-theme-text-secondary">5 pending approvals</p>
             </div>
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
               <p className="text-sm text-green-800 font-medium">System update completed</p>
