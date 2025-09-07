@@ -87,6 +87,12 @@ const DataTable = ({
   const searchTerm = searchTerms[activeTab] || '';
   const filteredData = filterData(data, searchTerm, searchFields);
 
+  // Pagination state
+  const [page, setPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
+  const totalPages = Math.ceil(filteredData.length / pageSize);
+  const paginatedData = filteredData.slice((page - 1) * pageSize, page * pageSize);
+
   const renderCellContent = (item, column, value, fieldKey) => {
     // Custom cell renderer
     if (renderCustomCell) {
@@ -176,12 +182,11 @@ const DataTable = ({
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 {columns.map((column, cellIndex) => {
                   const value = getFieldValue(item, column, t);
                   const fieldKey = column.toLowerCase().replace(/\s+/g, '');
-                  
                   return (
                     <td key={cellIndex} className={`px-4 md:px-6 py-4 ${isRTL ? 'text-right' : 'text-left'}`}>
                       {renderCellContent(item, column, value, fieldKey)}
@@ -213,7 +218,7 @@ const DataTable = ({
                 </td>
               </tr>
             ))}
-            {filteredData.length === 0 && (
+            {paginatedData.length === 0 && (
               <tr>
                 <td colSpan={columns.length + 1} className="px-6 py-8 text-center text-gray-500">
                   {searchTerm ? `${t('noResults')} "${searchTerm}"` : 'No data available'}
@@ -222,6 +227,22 @@ const DataTable = ({
             )}
           </tbody>
         </table>
+      </div>
+      {/* Pagination Controls */}
+      <div className="flex flex-col md:flex-row items-center justify-between px-4 py-4 gap-4">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-600">Rows per page:</span>
+          <select value={pageSize} onChange={e => { setPageSize(Number(e.target.value)); setPage(1); }} className="border rounded px-2 py-1">
+            {[5,10,20,50].map(size => <option key={size} value={size}>{size}</option>)}
+          </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <button onClick={() => setPage(1)} disabled={page === 1} className="px-2 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50">First</button>
+          <button onClick={() => setPage(page-1)} disabled={page === 1} className="px-2 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50">Prev</button>
+          <span className="text-sm">Page {page} of {totalPages}</span>
+          <button onClick={() => setPage(page+1)} disabled={page === totalPages} className="px-2 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50">Next</button>
+          <button onClick={() => setPage(totalPages)} disabled={page === totalPages} className="px-2 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50">Last</button>
+        </div>
       </div>
     </div>
   );

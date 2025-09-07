@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
-import { mockBookings } from '../../data/mockData';
+import { useDemoData } from '../../hooks/useDemoData';
 import DataTable from '../ui/DataTable';
 
 const BookingManagement = () => {
@@ -17,9 +17,10 @@ const BookingManagement = () => {
     'Amount'
   ];
 
+  const { data: bookings } = useDemoData('/data/demo/bookings.json');
   return (
     <DataTable
-      data={mockBookings}
+      data={bookings || []}
       columns={bookingColumns}
       title={t('bookingManagement')}
       searchFields={['customer', 'service', 'provider', 'location']}

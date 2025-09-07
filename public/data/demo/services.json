@@ -1,0 +1,12 @@
+[
+  {"id": 1, "name": "AC Repair", "nameAr": "تصليح المكيفات", "category": "Home Services", "provider": "CoolTech", "duration": "1-2 hours", "bookings": 320, "price": 18, "rating": 4.8, "status": "active"},
+  {"id": 2, "name": "Plumbing", "nameAr": "السباكة", "category": "Home Services", "provider": "FixIt Pro", "duration": "1 hour", "bookings": 210, "price": 25, "rating": 4.5, "status": "active"},
+  {"id": 3, "name": "Cleaning", "nameAr": "تنظيف", "category": "Home Services", "provider": "CleanCorp", "duration": "2-3 hours", "bookings": 180, "price": 15, "rating": 4.7, "status": "active"},
+  {"id": 4, "name": "Gardening", "nameAr": "البستنة", "category": "Outdoor", "provider": "Gardeners Oman", "duration": "2 hours", "bookings": 90, "price": 20, "rating": 4.2, "status": "active"},
+  {"id": 5, "name": "Painting", "nameAr": "الدهان", "category": "Home Improvement", "provider": "PaintPro", "duration": "3-4 hours", "bookings": 60, "price": 30, "rating": 4.4, "status": "active"},
+  {"id": 6, "name": "Carpet Cleaning", "nameAr": "تنظيف السجاد", "category": "Home Services", "provider": "CleanCorp", "duration": "1-2 hours", "bookings": 75, "price": 22, "rating": 4.6, "status": "active"},
+  {"id": 7, "name": "Electrical Repair", "nameAr": "إصلاح كهربائي", "category": "Home Improvement", "provider": "FixIt Pro", "duration": "1 hour", "bookings": 55, "price": 35, "rating": 4.3, "status": "active"},
+  {"id": 8, "name": "Pest Control", "nameAr": "مكافحة الحشرات", "category": "Home Services", "provider": "PestAway", "duration": "2 hours", "bookings": 40, "price": 28, "rating": 4.5, "status": "active"},
+  {"id": 9, "name": "Window Cleaning", "nameAr": "تنظيف النوافذ", "category": "Home Services", "provider": "CleanCorp", "duration": "1 hour", "bookings": 65, "price": 16, "rating": 4.7, "status": "active"},
+  {"id": 10, "name": "Furniture Assembly", "nameAr": "تركيب الأثاث", "category": "Home Improvement", "provider": "HandyMan Oman", "duration": "2-3 hours", "bookings": 30, "price": 40, "rating": 4.2, "status": "active"}
+]

@@ -1,0 +1,6 @@
+[
+  {"title": "Total Bookings", "value": 1200, "change": 12.5, "trend": "up", "subtitle": "32 pending"},
+  {"title": "Active Users", "value": 850, "change": 8.3, "trend": "up", "subtitle": "600 customers"},
+  {"title": "Monthly Revenue", "value": 42000, "change": 15.2, "trend": "up", "subtitle": "OMR this month", "prefix": "OMR"},
+  {"title": "Active Services", "value": 75, "change": 5.1, "trend": "up", "subtitle": "120 total services"}
+]

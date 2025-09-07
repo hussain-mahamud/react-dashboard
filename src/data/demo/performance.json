@@ -1,0 +1,6 @@
+[
+  {"title": "Service Providers", "value": 120, "change": 7.8, "trend": "up", "subtitle": "Active providers"},
+  {"title": "Completed Bookings", "value": 1100, "change": 94.2, "trend": "up", "subtitle": "Success rate 94.2%"},
+  {"title": "Average Rating", "value": 4.7, "change": 2.3, "trend": "up", "subtitle": "Customer satisfaction"},
+  {"title": "Response Time", "value": "12 min", "change": -15.2, "trend": "down", "subtitle": "Avg response time"}
+]

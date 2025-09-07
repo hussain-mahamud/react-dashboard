@@ -1,0 +1,7 @@
+[
+  {"id": 1, "name": "CleanCorp", "email": "cleancorp@example.com", "phone": "+968 9123 4567", "completedServices": 120, "rating": 4.8, "status": "active"},
+  {"id": 2, "name": "FixIt Pro", "email": "fixitpro@example.com", "phone": "+968 9234 5678", "completedServices": 98, "rating": 4.6, "status": "active"},
+  {"id": 3, "name": "CoolTech", "email": "cooltech@example.com", "phone": "+968 9345 6789", "completedServices": 75, "rating": 4.7, "status": "active"},
+  {"id": 4, "name": "Gardeners Oman", "email": "gardenersoman@example.com", "phone": "+968 9456 7890", "completedServices": 60, "rating": 4.5, "status": "active"},
+  {"id": 5, "name": "PaintPro", "email": "paintpro@example.com", "phone": "+968 9567 8901", "completedServices": 45, "rating": 4.4, "status": "active"}
+]

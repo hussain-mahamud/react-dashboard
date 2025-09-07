@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 import { useAppContext } from '../../contexts/AppContext';
-import { mockServices } from '../../data/mockData';
+import { useDemoData } from '../../hooks/useDemoData';
 import DataTable from '../ui/DataTable';
 
 const ServiceManagement = () => {
@@ -24,9 +24,10 @@ const ServiceManagement = () => {
     t('status')
   ];
 
+  const { data: services } = useDemoData('/data/demo/services.json');
   return (
     <DataTable
-      data={mockServices}
+      data={services || []}
       columns={serviceColumns}
       title={t('serviceManagement')}
       onAdd={handleAddService}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 import { useAppContext } from '../../contexts/AppContext';
-import { mockUsers } from '../../data/mockData';
+import { useDemoData } from '../../hooks/useDemoData';
 import { USER_ROLES } from '../../constants';
 import DataTable from '../ui/DataTable';
 
@@ -23,11 +23,11 @@ const ServiceProviders = () => {
     t('status')
   ];
 
-  const providers = mockUsers.filter(u => u.role === USER_ROLES.SERVICE_PROVIDER);
+  const { data: providers } = useDemoData('/data/demo/providers.json');
 
   return (
     <DataTable
-      data={providers}
+      data={providers || []}
       columns={providerColumns}
       title={t('serviceProviderManagement')}
       onAdd={handleAddProvider}

@@ -1,0 +1,12 @@
+[
+  {"id": 1, "service": "AC Repair", "customer": "Ali Hassan", "date": "2025-09-07", "time": "10:00 AM", "location": "Muscat", "amount": 18, "status": "completed", "rating": 5},
+  {"id": 2, "service": "Plumbing", "customer": "Sara Al Balushi", "date": "2025-09-07", "time": "11:30 AM", "location": "Seeb", "amount": 25, "status": "pending", "rating": 4},
+  {"id": 3, "service": "Cleaning", "customer": "Mohammed Said", "date": "2025-09-07", "time": "1:00 PM", "location": "Bawshar", "amount": 15, "status": "completed", "rating": 5},
+  {"id": 4, "service": "Gardening", "customer": "Fatma Al Lawati", "date": "2025-09-07", "time": "2:30 PM", "location": "Al Khoudh", "amount": 20, "status": "pending", "rating": 3},
+  {"id": 5, "service": "Painting", "customer": "Khalid Al Amri", "date": "2025-09-07", "time": "4:00 PM", "location": "Ruwi", "amount": 30, "status": "completed", "rating": 4},
+  {"id": 6, "service": "Carpet Cleaning", "customer": "Aisha Al Zadjali", "date": "2025-09-08", "time": "9:00 AM", "location": "Qurum", "amount": 22, "status": "completed", "rating": 5},
+  {"id": 7, "service": "Electrical Repair", "customer": "Hassan Al Farsi", "date": "2025-09-08", "time": "11:00 AM", "location": "Muttrah", "amount": 35, "status": "pending", "rating": 4},
+  {"id": 8, "service": "Pest Control", "customer": "Muna Al Riyami", "date": "2025-09-08", "time": "1:30 PM", "location": "Amerat", "amount": 28, "status": "completed", "rating": 5},
+  {"id": 9, "service": "Window Cleaning", "customer": "Salim Al Habsi", "date": "2025-09-08", "time": "3:00 PM", "location": "Ghubra", "amount": 16, "status": "pending", "rating": 3},
+  {"id": 10, "service": "Furniture Assembly", "customer": "Layla Al Busaidi", "date": "2025-09-08", "time": "5:00 PM", "location": "Al Khuwair", "amount": 40, "status": "completed", "rating": 4}
+]

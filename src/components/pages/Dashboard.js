@@ -21,33 +21,29 @@ import { mockBookings, mockServices } from '../../data/mockData';
 import StatCard from '../ui/StatCard';
 import StatusBadge from '../ui/StatusBadge';
 import RatingStars from '../ui/RatingStars';
+import { useDemoData } from '../../hooks/useDemoData';
 
 const Dashboard = () => {
   const { t, currentLanguage } = useLocalization();
   const stats = useStats();
 
-  // Calculate growth percentages and trends
-  const growthData = {
-    bookingsGrowth: 12.5,
-    usersGrowth: 8.3,
-    revenueGrowth: 15.2,
-    servicesGrowth: 5.1,
-    providersGrowth: 7.8,
-    completionRate: 94.2,
-    avgResponseTime: '12 min'
-  };
+  // Fetch demo data
+  const { data: welcomeData } = useDemoData('/data/demo/welcome.json');
+  const { data: todayActivity } = useDemoData('/data/demo/todayactivity.json');
+  const { data: kpiData } = useDemoData('/data/demo/kpi.json');
+  const { data: performanceData } = useDemoData('/data/demo/performance.json');
 
   return (
     <div className="space-y-6">
-      {/* Welcome Header */}
+      {/* Welcome Header (dynamic) */}
       <div className="bg-theme-primary rounded-xl p-6 text-white">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h1 className="text-2xl lg:text-3xl font-bold mb-2">
-              {t('welcome')} Dashboard
+              {welcomeData ? welcomeData.welcome : t('welcome') + ' Dashboard'}
             </h1>
             <p className="text-white/90 text-lg">
-              {t('todayOverview')} • {new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-OM' : 'en-OM')}
+              {welcomeData ? welcomeData.todayOverview : t('todayOverview')} • {welcomeData ? welcomeData.date : new Date().toLocaleDateString(currentLanguage === 'ar' ? 'ar-OM' : 'en-OM')}
             </p>
           </div>
           <div className="mt-4 lg:mt-0 flex space-x-3">
@@ -55,7 +51,7 @@ const Dashboard = () => {
               <Eye className="w-4 h-4 inline mr-2" />
               {t('viewReports')}
             </button>
-                        <button className="bg-white text-theme-primary hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+            <button className="bg-white text-theme-primary hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <ArrowUpRight className="w-4 h-4 inline mr-2" />
               {t('quickActions')}
             </button>
@@ -63,85 +59,47 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Key Performance Indicators */}
+      {/* Key Performance Indicators (dynamic) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard 
-          title={t('totalBookings')} 
-          value={stats.totalBookings} 
-          change={growthData.bookingsGrowth} 
-          icon={Calendar} 
-          color="blue"
-          trend="up"
-          subtitle={`${stats.pendingBookings} pending`}
-        />
-        <StatCard 
-          title={t('activeUsers')} 
-          value={stats.totalUsers} 
-          change={growthData.usersGrowth} 
-          icon={Users} 
-          color="green"
-          trend="up"
-          subtitle={`${stats.totalCustomers} customers`}
-        />
-        <StatCard 
-          title={t('monthlyRevenue')} 
-          value={`${stats.monthlyRevenue}`} 
-          change={growthData.revenueGrowth} 
-          icon={DollarSign} 
-          color="purple"
-          trend="up"
-          subtitle="OMR this month"
-          prefix="OMR"
-        />
-        <StatCard 
-          title={t('activeServices')} 
-          value={stats.activeServices} 
-          change={growthData.servicesGrowth} 
-          icon={Grid3X3} 
-          color="yellow"
-          trend="up"
-          subtitle={`${stats.totalServices} total services`}
-        />
+        {kpiData && kpiData.map((item, idx) => (
+          <StatCard
+            key={idx}
+            title={item.title}
+            value={item.value}
+            change={item.change}
+            icon={
+              idx === 0 ? Calendar :
+              idx === 1 ? Users :
+              idx === 2 ? DollarSign :
+              Grid3X3
+            }
+            color={['blue','green','purple','yellow'][idx]}
+            trend={item.trend}
+            subtitle={item.subtitle}
+            prefix={item.prefix}
+          />
+        ))}
       </div>
 
-      {/* Performance Metrics */}
+      {/* Performance Metrics (dynamic) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard 
-          title={t('serviceProviders')} 
-          value={stats.totalProviders} 
-          change={growthData.providersGrowth}
-          icon={UserCheck} 
-          color="indigo"
-          trend="up"
-          subtitle="Active providers"
-        />
-        <StatCard 
-          title={t('completedBookings')} 
-          value={stats.completedBookings} 
-          change={growthData.completionRate}
-          icon={CheckCircle} 
-          color="green"
-          trend="up"
-          subtitle="Success rate 94.2%"
-        />
-        <StatCard 
-          title={t('averageRating')} 
-          value={stats.averageRating.toFixed(1)} 
-          change={2.3}
-          icon={Star} 
-          color="yellow"
-          trend="up"
-          subtitle="Customer satisfaction"
-        />
-        <StatCard 
-          title="Response Time" 
-          value={growthData.avgResponseTime}
-          change={-15.2}
-          icon={Clock} 
-          color="orange"
-          trend="down"
-          subtitle="Avg response time"
-        />
+        {performanceData && performanceData.map((item, idx) => (
+          <StatCard
+            key={idx}
+            title={item.title}
+            value={item.value}
+            change={item.change}
+            icon={
+              idx === 0 ? UserCheck :
+              idx === 1 ? CheckCircle :
+              idx === 2 ? Star :
+              Clock
+            }
+            color={['indigo','green','yellow','orange'][idx]}
+            trend={item.trend}
+            subtitle={item.subtitle}
+          />
+        ))}
       </div>
 
       {/* Activity Overview */}
@@ -153,22 +111,12 @@ const Dashboard = () => {
             <Activity className="w-5 h-5 text-theme-text-secondary" />
           </div>
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-theme-text-secondary">New Bookings</span>
-              <span className="font-semibold text-theme-primary">+8</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-theme-text-secondary">Completed Services</span>
-              <span className="font-semibold text-green-600">+12</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-theme-text-secondary">New Providers</span>
-              <span className="font-semibold text-theme-accent">+3</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-theme-text-secondary">Customer Reviews</span>
-              <span className="font-semibold text-yellow-600">+15</span>
-            </div>
+            {todayActivity && todayActivity.map((item, idx) => (
+              <div key={idx} className="flex justify-between items-center">
+                <span className="text-sm text-theme-text-secondary">{item.label}</span>
+                <span className="font-semibold text-theme-primary">{item.value}</span>
+              </div>
+            ))}
           </div>
         </div>
 

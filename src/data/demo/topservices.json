@@ -1,0 +1,7 @@
+[
+  {"id": 1, "name": "AC Repair", "nameAr": "تصليح المكيفات", "bookings": 320, "price": 18, "rating": 4.8, "status": "active"},
+  {"id": 2, "name": "Plumbing", "nameAr": "السباكة", "bookings": 210, "price": 25, "rating": 4.5, "status": "active"},
+  {"id": 3, "name": "Cleaning", "nameAr": "تنظيف", "bookings": 180, "price": 15, "rating": 4.7, "status": "active"},
+  {"id": 4, "name": "Gardening", "nameAr": "البستنة", "bookings": 90, "price": 20, "rating": 4.2, "status": "active"},
+  {"id": 5, "name": "Painting", "nameAr": "الدهان", "bookings": 60, "price": 30, "rating": 4.4, "status": "active"}
+]

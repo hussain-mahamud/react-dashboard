@@ -1,0 +1,7 @@
+[
+  {"id": 1, "service": "AC Repair", "customer": "Ali Hassan", "date": "2025-09-07", "time": "10:00 AM", "location": "Muscat", "amount": 18, "status": "completed", "rating": 5},
+  {"id": 2, "service": "Plumbing", "customer": "Sara Al Balushi", "date": "2025-09-07", "time": "11:30 AM", "location": "Seeb", "amount": 25, "status": "pending", "rating": 4},
+  {"id": 3, "service": "Cleaning", "customer": "Mohammed Said", "date": "2025-09-07", "time": "1:00 PM", "location": "Bawshar", "amount": 15, "status": "completed", "rating": 5},
+  {"id": 4, "service": "Gardening", "customer": "Fatma Al Lawati", "date": "2025-09-07", "time": "2:30 PM", "location": "Al Khoudh", "amount": 20, "status": "pending", "rating": 3},
+  {"id": 5, "service": "Painting", "customer": "Khalid Al Amri", "date": "2025-09-07", "time": "4:00 PM", "location": "Ruwi", "amount": 30, "status": "completed", "rating": 4}
+]

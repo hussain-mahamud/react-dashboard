@@ -1,0 +1,5 @@
+[
+  {"type": "review", "title": "3 pending reviews", "desc": "Requires admin attention"},
+  {"type": "provider", "title": "New provider applications", "desc": "5 pending approvals"},
+  {"type": "system", "title": "System update completed", "desc": "All services running normally"}
+]

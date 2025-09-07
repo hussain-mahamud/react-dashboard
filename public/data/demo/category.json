@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "Home Services", "nameAr": "الخدمات المنزلية", "serviceCount": 5, "status": "active", "description": "All home-related services"},
+  {"id": 2, "name": "Outdoor", "nameAr": "الخدمات الخارجية", "serviceCount": 1, "status": "active", "description": "Garden and outdoor services"},
+  {"id": 3, "name": "Home Improvement", "nameAr": "تحسين المنزل", "serviceCount": 3, "status": "active", "description": "Painting, electrical, and furniture assembly"}
+]

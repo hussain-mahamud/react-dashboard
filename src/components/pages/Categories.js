@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 import { useAppContext } from '../../contexts/AppContext';
-import { mockCategories } from '../../data/mockData';
+import { useDemoData } from '../../hooks/useDemoData';
 import DataTable from '../ui/DataTable';
 
 const Categories = () => {
@@ -20,9 +20,10 @@ const Categories = () => {
     t('description')
   ];
 
+  const { data: categories } = useDemoData('/data/demo/category.json');
   return (
     <DataTable
-      data={mockCategories}
+      data={categories || []}
       columns={categoryColumns}
       title={t('categories')}
       onAdd={handleAddCategory}
